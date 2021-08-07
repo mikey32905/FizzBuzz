@@ -69,7 +69,7 @@
                                 let buzzNumber = parseInt(buzzValue);
                             
                                 if (Number.isInteger(fizzNumber) && Number.isInteger(buzzNumber)){
-                                    resultList = doTheFizzBuzz(fizzNumber, buzzNumber);
+                                    resultList = doTheFizzBuzzC(fizzNumber, buzzNumber);
                                     displayResults(resultList);
                                 }
                                 else
@@ -80,24 +80,71 @@
                             
                             
                             //get fizzbuzz results based on entered fizzNumber and buzzNumber
+                            //Method 1
                             function doTheFizzBuzz(fizzNumber, buzzNumber){
-                                let output = [];
+                                let outputArray = [];
                             
                                 for (let i = 1; i <= 100; i++){
                                     if (i % fizzNumber == 0 && i % buzzNumber == 0){
-                                        output.push("FizzBuzz");
+                                        outputArray.push("FizzBuzz");
                                     } else if (i % fizzNumber == 0) {
-                                            output.push("Fizz");
+                                        outputArray.push("Fizz");
                                     } else if (i % buzzNumber == 0) {
-                                        output.push("Buzz");
+                                        outputArray.push("Buzz");
                                     } else {
-                                        output.push(i.toString());
+                                        outputArray.push(i.toString());
                                     }
                                 }
                              
-                                return output;
+                                return outputArray;
                             }
                             
+                            //get fizz buzz result - method 2 using switch statement
+                            function doTheFizzBuzzB(fizzNumber, buzzNumber){
+                                let outputArray = [];
+                                let Fizz = false;
+                                let Buzz = false;
+                            
+                                for (let i = 1; i <=100; i++){
+                                    
+                                    Fizz = i % fizzNumber == 0;
+                                    Buzz = i % buzzNumber == 0;
+                            
+                                    switch(true)
+                                    {
+                                        case Fizz && Buzz:{
+                                            outputArray.push("FizzBuzz");
+                                            break;
+                                        }
+                                        case Fizz: {
+                                            outputArray.push("Fizz");
+                                            break;
+                                        }
+                                        case Buzz: {
+                                            outputArray.push("Buzz");
+                                            break;
+                                        }
+                                        default:{
+                                            outputArray.push(i);
+                                            break;
+                                        }
+                                    }
+                                }
+                            
+                                return outputArray;
+                            }
+                            
+                            //Method 3 - get fizz buzz results - using conditional (ternary) operator -- one liner
+                            function doTheFizzBuzzC(fizzNumber, buzzNumber){
+                                let outputArray = [];
+                            
+                                for(let i = 1; i <= 100; i++){
+                                    let value = ((i % fizzNumber == 0 ? "Fizz" : "") + (i % buzzNumber == 0 ? "Buzz" : "") || i) ;
+                                    outputArray.push(value);
+                                }
+                            
+                                return outputArray;
+                            }
                             
                             //display results
                             function displayResults(resultList){
@@ -135,6 +182,7 @@
                                 }
                             }
                             
+                            
                             </code>
                         </pre>
                     </div>
@@ -148,12 +196,20 @@
                             the user.  It then gets a generated list from 1 to 100.  Finally, it sends retrieved
                             values, after parsing them to integers, and the number list to be displayed.  </p>
                         <h5>doTheFizzBuzz</h5>
-                        <p>doTheFizzBuzz generates a number list from 1 to 100 via a for/loop.  Using
+                        <p>doTheFizzBuzz is first method used to generate a number list from 1 to 100 via a for/loop.  Using
                             a nested if/then/else and the modulus (%) operator, numbers are evaluated against 
                             the entered "Fizz" and "Buzz" numbers.   If number is a multple of "Fizz" number,
                             "Fizz" will display in place of the number.  If number is a multple of "Buzz" 
                             number, "Buzz" will display in place of the number.  If number is a multple of both,
                             "FizzBuzz" will appear.   The generated list is returned for display.
+                        </p>
+                        <h5>doTheFizzBuzzB</h5>
+                        <p>doTheFizzBuzzB is the second method for generating the Fizz Buzz results.  This method 
+                            uses a switch statement to replace nested if/then/else loop in previous method.  
+                        </p>
+                        <h5>doTheFizzBuzzC</h5>
+                        <p>doTheFizzBuzzC is the third method for generating the Fizz Buzz results.  This method 
+                            uses the conditional or ternary operators to evaluate whether number is a multple.
                         </p>
                         <h5>displayResults</h5>
                         <p>displayResults displays the results to the html page in a table format using

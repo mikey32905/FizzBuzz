@@ -9,7 +9,7 @@ function getValues(){
     let buzzNumber = parseInt(buzzValue);
 
     if (Number.isInteger(fizzNumber) && Number.isInteger(buzzNumber)){
-        resultList = doTheFizzBuzz(fizzNumber, buzzNumber);
+        resultList = doTheFizzBuzzC(fizzNumber, buzzNumber);
         displayResults(resultList);
     }
     else
@@ -20,24 +20,71 @@ function getValues(){
 
 
 //get fizzbuzz results based on entered fizzNumber and buzzNumber
+//Method 1
 function doTheFizzBuzz(fizzNumber, buzzNumber){
-    let output = [];
+    let outputArray = [];
 
     for (let i = 1; i <= 100; i++){
         if (i % fizzNumber == 0 && i % buzzNumber == 0){
-            output.push("FizzBuzz");
+            outputArray.push("FizzBuzz");
         } else if (i % fizzNumber == 0) {
-                output.push("Fizz");
+            outputArray.push("Fizz");
         } else if (i % buzzNumber == 0) {
-            output.push("Buzz");
+            outputArray.push("Buzz");
         } else {
-            output.push(i.toString());
+            outputArray.push(i.toString());
         }
     }
  
-    return output;
+    return outputArray;
 }
 
+//get fizz buzz result - method 2 using switch statement
+function doTheFizzBuzzB(fizzNumber, buzzNumber){
+    let outputArray = [];
+    let Fizz = false;
+    let Buzz = false;
+
+    for (let i = 1; i <=100; i++){
+        
+        Fizz = i % fizzNumber == 0;
+        Buzz = i % buzzNumber == 0;
+
+        switch(true)
+        {
+            case Fizz && Buzz:{
+                outputArray.push("FizzBuzz");
+                break;
+            }
+            case Fizz: {
+                outputArray.push("Fizz");
+                break;
+            }
+            case Buzz: {
+                outputArray.push("Buzz");
+                break;
+            }
+            default:{
+                outputArray.push(i);
+                break;
+            }
+        }
+    }
+
+    return outputArray;
+}
+
+//Method 3 - get fizz buzz results - using conditional (ternary) operator -- one liner
+function doTheFizzBuzzC(fizzNumber, buzzNumber){
+    let outputArray = [];
+
+    for(let i = 1; i <= 100; i++){
+        let value = ((i % fizzNumber == 0 ? "Fizz" : "") + (i % buzzNumber == 0 ? "Buzz" : "") || i) ;
+        outputArray.push(value);
+    }
+
+    return outputArray;
+}
 
 //display results
 function displayResults(resultList){
