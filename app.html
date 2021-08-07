@@ -2,7 +2,7 @@
 <html lang="en" class="h-100">
 
     <head>
-        <title>App Name: A Coding Project by Mike Williams</title>
+        <title>FIZZ BUZZ: A Coding Project by Mike Williams</title>
         <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -13,7 +13,7 @@
 
         <script src="https://kit.fontawesome.com/5db21ba9c6.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="css/site.css">
-        <link rel="icon" type="image/png" href="/img/favicon(1)-40x40.png">
+        <link rel="icon" type="image/png" href="favicon(1)-40x40.png">
 
     </head>
 
@@ -21,7 +21,7 @@
         <!--Nav Section-->
         <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#"><img src="img/MikeWilliams(2)-Mark.png" clas="d-inline-block align-text-top" width="30" height="24"> APP NAME</a>
+                <a class="navbar-brand" href="#"><img src="img/MikeWilliams(2)-Mark.png" clas="d-inline-block align-text-top" width="30" height="24"> FIZZ BUZZ</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
                     aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -50,8 +50,45 @@
 
         <!--Main Section-->
         <main class="flex-shrink-0">
-            <div class="container">
-
+            <div class="container mt-5">
+                <div class="row row-cols-1 row-cols-lg-2">
+                    <div class="col-lg-4 col border-end border-2">
+                        <h1>FIZZ BUZZ: A Coding Project</h1>
+                        <h4 class="lead"> 
+                            When it counts you Fizz Buzz.  A javascript coding exercise using loops.
+                            Write a program that prints the numbers from 1 to 100 and for multiples
+                            of "3" display "Fizz" instead of the number and for the multiples of "5"
+                            display "Buzz".  For multiples of both display "FizzBuzz".
+                        </h4>
+                        <h2 class="mt-5 border-bottom border-2">Instructions</h2>
+                        <p>Enter two values.  Press the button and the values will appear.</p>
+                    </div>
+                    <div class="col-lg-8 col ">
+                        <form class="row gy-2 gx-3">
+                            <div class="col-6">
+                                <label class="form-label">Enter a Fizz number</label>
+                                <input type=text id="fizzNumber" class="form-control" placeholder="fizz number"
+                                    value=3 aria-label="fizz number">
+                            </div>
+                            <div class="col-6">
+                                <label class="form-label">Enter a Buzz number</label>
+                                <input type=text id="buzzNumber" class="form-control" placeholder="buzz number"
+                                    value=5 aria-label="buzz number">
+                            </div>
+                            <div class="col-12 d-flex justify-content-start">
+                                <button id="btnSubmit" type="button" class="btn btn-dark btn-lg">Submit</button>
+                            </div>
+                        </form>
+                        <h2 class="mt-5 border-bottom border-2">Results</h2>
+                        <div class="table-responsive">
+                            <table class="table table-striped table-sm">
+                                <tbody id="results">
+                                    <!--results go here-->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
         </main>
 
@@ -86,6 +123,8 @@
         </script>
 
         <script src="js/site.js"></script>
-
+        <script>
+            document.getElementById("btnSubmit").addEventListener("click", getValues);
+        </script>
     </body>
 </html>

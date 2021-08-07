@@ -2,7 +2,7 @@
 <html lang="en" class="h-100">
 
     <head>
-        <title>App Name: A Coding Project by Mike Williams</title>
+        <title>FIZZ BUZZ: A Coding Project by Mike Williams</title>
         <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -14,7 +14,7 @@
         <script src="https://kit.fontawesome.com/5db21ba9c6.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="css/site.css">
         <link rel="stylesheet" href="/css/prism.css" >
-        <link rel="icon" type="image/png" href="/img/favicon(1)-40x40.png">
+        <link rel="icon" type="image/png" href="favicon(1)-40x40.png">
 
     </head>
 
@@ -22,7 +22,7 @@
         <!--Nav Section-->
         <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#"><img src="img/MikeWilliams(2)-Mark.png" clas="d-inline-block align-text-top" width="30" height="24"> APP NAME</a>
+                <a class="navbar-brand" href="#"><img src="img/MikeWilliams(2)-Mark.png" clas="d-inline-block align-text-top" width="30" height="24"> FIZZ BUZZ</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
                     aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -52,25 +52,106 @@
         <!--Main Section-->
         <main class="flex-shrink-0">
             <div class="container py-4 px-5 mt-5">
-                <h2 class="border-1 border-bottom border-dark">The Code for APP NAME.</h2>
+                <h2 class="border-1 border-bottom border-dark">The Code for FIZZ BUZZ.</h2>
                 <div class="row row-cols-1 row-cols-lg-2">
                     <!--Code Embed-->
                     <!--Paste Javascript code between <code> </code>-->
                     <div class="col-lg-8">
                         <pre class="line-numbers"><code class="language-javascript">                          
-                                //Call Hello World
-                                function HelloWorld(){
-                                    alert("Hello World!!");
+                            //Get values from user
+                            function getValues(){
+                                let fizzValue = document.getElementById("fizzNumber").value;
+                                let buzzValue = document.getElementById("buzzNumber").value;
+                            
+                                let numberList = getNumberList();
+                            
+                                let fizzNumber = parseInt(fizzValue);
+                                let buzzNumber = parseInt(buzzValue);
+                            
+                                if (Number.isInteger(fizzNumber) && Number.isInteger(buzzNumber)){
+                                    displayResults(fizzNumber, buzzNumber, numberList);
                                 }
-                        </code>
+                                else
+                                {
+                                    alert("You must enter a valid number!! Please try again!!");
+                                }
+                            
+                            
+                            
+                            }
+                            
+                            
+                            
+                            //Get list of numbers
+                            function getNumberList(){
+                                let output = [];
+                            
+                                for (let i = 1; i <= 100; i++){
+                                    output.push(i);
+                                }
+                            
+                                return output;
+                            }
+                            
+                            
+                            //display results
+                            function displayResults(fizzNumber, buzzNumber, numberList){
+                                let templateRows = "";
+                            
+                                //This does render correctly with Prism see the source
+                                templateRows += `&lt;tr>`;
+                                for (let i = 0; i < numberList.length; i++){
+                                    let number = numberList[i];
+                            
+                                    if (i % 5 == 0)
+                                    {
+                                        //This does render correctly with Prism see the source
+                                        templateRows += `&lt;/tr>`&lt;tr>`
+                                    }
+                            
+                                    if (number % fizzNumber == 0 && number % buzzNumber == 0){
+                                        //This does render correctly with Prism see the source
+                                        templateRows += `&lt;td>FizzBuzz&lt;/td>`;
+                                    } else {
+                                        if (number % fizzNumber == 0){
+                                            //This does render correctly with Prism see the source
+                                            templateRows += `&lt;td>Fizz&lt;/td>`;
+                                        }else if (number % buzzNumber == 0) {
+                                            //This does render correctly with Prism see the source
+                                            templateRows += `&lt;td>Buzz&lt;/td>`;
+                                        } else {
+                                            //This does render correctly with Prism see the source
+                                            templateRows += `&lt;td>${number}&lt;/td>`;
+                                        }
+                            
+                                    }
+                            
+                                    document.getElementById("results").innerHTML = templateRows;
+                                }
+                            }
+                                                    </code>
                         </pre>
                     </div>
 
                     <!--Description-->
                     <div class="col-lg-4">
-                        <p>The code is structured in one function.</p>
-                        <h5>Hello World</h5>
-                        <p>Hello World is a function that displays an alert with a message of "Hello World".</p>
+                        <p>The code is structured in three functions.</p>
+                        <h5>getValues</h5>
+                        <p>getValues is the quarterback function.  It retrieved the values entered in by 
+                            the user.  It then gets a generated list from 1 to 100.  Finally, it sends retrieved
+                            values, after parsing them to integers, and the number list to be displayed.  </p>
+                        <h5>getNumberList</h5>
+                        <p>getNumberList generates a number list from 1 to 100 via a for/loop.  The number list 
+                            is returned for display use.
+                        </p>
+                        <h5>displayResults</h5>
+                        <p>displayResults displays the results to the html page in a table format.  Using
+                            a nexted if/then/else and the modulus (%) operator, numbers are evaluated against 
+                            the entered "Fizz" and "Buzz" numbers.   If number is a multple of "Fizz" number,
+                            "Fizz" will display in place of the number.  If number is a multple of "Buzz" 
+                            number, "Buzz" will display in place of the number.  If number is a multple of both,
+                            "FizzBuzz" will appear. 
+                        </p>
                     </div>
                 </div>
             </div>
