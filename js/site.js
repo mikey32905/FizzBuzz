@@ -3,63 +3,74 @@ function getValues(){
     let fizzValue = document.getElementById("fizzNumber").value;
     let buzzValue = document.getElementById("buzzNumber").value;
 
-    let numberList = getNumberList();
+    let resultList = [];
 
     let fizzNumber = parseInt(fizzValue);
     let buzzNumber = parseInt(buzzValue);
 
     if (Number.isInteger(fizzNumber) && Number.isInteger(buzzNumber)){
-        displayResults(fizzNumber, buzzNumber, numberList);
+        resultList = doTheFizzBuzz(fizzNumber, buzzNumber);
+        displayResults(resultList);
     }
     else
     {
         alert("You must enter a valid number!! Please try again!!");
     }
-
-
-
 }
 
 
-
-//Get list of numbers
-function getNumberList(){
+//get fizzbuzz results based on entered fizzNumber and buzzNumber
+function doTheFizzBuzz(fizzNumber, buzzNumber){
     let output = [];
 
     for (let i = 1; i <= 100; i++){
-        output.push(i);
+        if (i % fizzNumber == 0 && i % buzzNumber == 0){
+            output.push("FizzBuzz");
+        } else if (i % fizzNumber == 0) {
+                output.push("Fizz");
+        } else if (i % buzzNumber == 0) {
+            output.push("Buzz");
+        } else {
+            output.push(i.toString());
+        }
     }
-
+ 
     return output;
 }
 
 
 //display results
-function displayResults(fizzNumber, buzzNumber, numberList){
-    let templateRows = "";
+function displayResults(resultList){
 
-    templateRows += `<tr>`;
-    for (let i = 0; i < numberList.length; i++){
-        let number = numberList[i];
+    //get table body element from page
+    let tablebody = document.getElementById("results");
 
-        if (i % 5 == 0)
-        {
-            templateRows += `</tr><tr>`
-        }
+    //get template row
+    let templateRow = document.getElementById("fbTemplate");
 
-        if (number % fizzNumber == 0 && number % buzzNumber == 0){
-            templateRows += `<td>FizzBuzz</td>`;
-        } else {
-            if (number % fizzNumber == 0){
-                templateRows += `<td>Fizz</td>`;
-            }else if (number % buzzNumber == 0) {
-                templateRows += `<td>Buzz</td>`;
-            } else {
-                templateRows += `<td>${number}</td>`;
-            }
+    //clear the table first
+    tablebody.innerHTML = "";
 
-        }
+      for (let index = 0; index < resultList.length; index += 5){
+        let tableRow = document.importNode(templateRow.content, true);
 
-        document.getElementById("results").innerHTML = templateRows;
+        //grab number of tds and put into array
+        let rowCols = tableRow.querySelectorAll("td");
+        rowCols[0].classList.add(resultList[index]);
+        rowCols[0].textContent = resultList[index];
+
+        rowCols[1].classList.add(resultList[index+1]);
+        rowCols[1].textContent = resultList[index+1];
+        
+        rowCols[2].classList.add(resultList[index+2]);
+        rowCols[2].textContent = resultList[index+2];
+       
+        rowCols[3].classList.add(resultList[index+3]);
+        rowCols[3].textContent = resultList[index+3];
+       
+        rowCols[4].classList.add(resultList[index+4]);
+        rowCols[4].textContent = resultList[index+4];
+
+        tablebody.appendChild(tableRow);
     }
 }
